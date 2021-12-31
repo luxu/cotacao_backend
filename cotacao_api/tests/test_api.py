@@ -1,23 +1,20 @@
 import pytest
-
 from django.urls import reverse
+
+from moeda.models import Moeda
 
 
 @pytest.fixture
-def url_que_carrega_os_dados(client, db):
-    """Criado o banco, roda as migrations, acessa a url externa e alimenta o banco com os dados"""
-    return client.get(reverse("api_site"))
+def moeda(db):
+    m1 = Moeda(initials="BRL", name_coin="Real", data="2021-12-29", value="5.646642484296204")
+    m1.save()
+    m2 = Moeda(initials="JPY", name_coin="Iene", data="2021-12-29", value="114.98717154737679")
+    m2.save()
+    m3 = Moeda(initials="EUR", name_coin="Euro", data="2021-12-29", value="0.8847208705653365")
+    m3.save()
+    return m1
 
 
-def test_carregar_dados_api_externa(url_que_carrega_os_dados):
-    assert url_que_carrega_os_dados.status_code == 200
-
-
-def test_base_de_dados_vazi(client, db):
+def test_listar_todos_dados(client, moeda):
     resp = client.get(reverse('api_cotacoes'))
-    assert len(resp.json()) == 0
-
-
-def test_listar_todos_dados(client, url_que_carrega_os_dados):
-    resp = client.get(reverse('api_cotacoes'))
-    assert len(resp.json()) > 0
+    assert len(resp.json()) == 3
