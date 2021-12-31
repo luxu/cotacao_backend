@@ -10,6 +10,7 @@ jobs:
     env:
       PIPENV_NO_INHERIT: 1
       PIPENV_IGNORE_VIRTUALENVS: 1
+      SECRET_KEY: ''
     runs-on: ubuntu-latest
 
     services:
@@ -44,6 +45,8 @@ jobs:
       run: |
         pipenv run flake8 .
     - name: Rodar Testes Automáticos
+      env: 
+        SECRET_KEY: 'your-genereated-secret_key'
       run: |
           pipenv run pytest --cov=cotacao_api/tests
     - name: Relatório Coverage
