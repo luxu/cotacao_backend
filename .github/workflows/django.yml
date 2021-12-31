@@ -48,7 +48,7 @@ jobs:
       env: 
         SECRET_KEY: 'your-genereated-secret_key'
       run: |
-          pipenv run pytest --cov=cotacao_api/tests
+          pytest --cov=cotacao_api/tests
     - name: Relatório Coverage
       env:
           CODECOV_TOKEN: "a25e3e4c-71da-4e0c-9dd2-db308c481bb4"
