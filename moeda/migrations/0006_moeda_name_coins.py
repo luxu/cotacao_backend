@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('moeda', '0005_remove_moeda_continent_remove_moeda_name_coin_and_more'),
+        ("moeda", "0005_remove_moeda_continent_remove_moeda_name_coin_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='moeda',
-            name='name_coins',
-            field=models.CharField(max_length=5, null=True, verbose_name='Moeda'),
+            model_name="moeda",
+            name="name_coins",
+            field=models.CharField(max_length=5, null=True, verbose_name="Moeda"),
         ),
     ]

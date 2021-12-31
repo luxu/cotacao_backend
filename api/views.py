@@ -10,40 +10,40 @@ from .serializer import MoedaListSerializer, MoedaSerializer
 from moeda.models import Moeda
 
 
-@api_view(['GET'])
+@api_view(["GET"])
 def coins_list(request):
     """Listar as moedas"""
-    if request.method == 'GET':
+    if request.method == "GET":
         moeda = Moeda.objects.all()
         serializer = MoedaListSerializer(moeda, many=True)
         return Response(serializer.data)
 
 
-@api_view(['GET'])
+@api_view(["GET"])
 def request_site(request):
     """Pegar os dados do site"""
-    if request.method == 'GET':
+    if request.method == "GET":
         for day in range(5):
             cotation_day = datetime.now() - timedelta(days=day)
-            url = f'https://api.vatcomply.com/rates?base=USD&date={cotation_day.date()}'
+            url = f"https://api.vatcomply.com/rates?base=USD&date={cotation_day.date()}"
             response = get(url)
-            list_initials_coins = ['BRL', 'EUR', 'JPY']
-            rates = response.json()['rates']
+            list_initials_coins = ["BRL", "EUR", "JPY"]
+            rates = response.json()["rates"]
             moeda = Moeda.objects.filter(data=cotation_day)
             if not moeda:
                 for sigla in list_initials_coins:
                     value = rates[sigla]
-                    if sigla == 'BRL':
+                    if sigla == "BRL":
                         name_coin = NAME[0][0]
-                    elif sigla == 'JPY':
+                    elif sigla == "JPY":
                         name_coin = NAME[1][0]
                     else:
                         name_coin = NAME[2][0]
                     dados = {
-                        'initials': sigla,
-                        'name_coin': name_coin,
-                        'data': cotation_day.date(),
-                        'value': value,
+                        "initials": sigla,
+                        "name_coin": name_coin,
+                        "data": cotation_day.date(),
+                        "value": value,
                     }
                     serializer = MoedaSerializer(data=dados)
                     serializer.is_valid(raise_exception=True)

@@ -6,21 +6,26 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('moeda', '0004_moeda_continent'),
+        ("moeda", "0004_moeda_continent"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='moeda',
-            name='continent',
+            model_name="moeda",
+            name="continent",
         ),
         migrations.RemoveField(
-            model_name='moeda',
-            name='name_coin',
+            model_name="moeda",
+            name="name_coin",
         ),
         migrations.AddField(
-            model_name='moeda',
-            name='initials',
-            field=models.CharField(choices=[('BRL', 'Real'), ('JPY', 'Iene'), ('EUR', 'Euro')], max_length=3, null=True, verbose_name='Sigla da moeda'),
+            model_name="moeda",
+            name="initials",
+            field=models.CharField(
+                choices=[("BRL", "Real"), ("JPY", "Iene"), ("EUR", "Euro")],
+                max_length=3,
+                null=True,
+                verbose_name="Sigla da moeda",
+            ),
         ),
     ]

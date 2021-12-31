@@ -31,13 +31,13 @@ def payment(providers):
     return mommy.make(
         Payments,
         provider=providers[0],
-        due_date=datetime.datetime(2020, 7, 10, 12, 56, 54, 324893)
+        due_date=datetime.datetime(2020, 7, 10, 12, 56, 54, 324893),
     )
 
 
 @pytest.fixture
 def list_payments(client, db):
-    resp = client.get(reverse('list_payments'))
+    resp = client.get(reverse("list_payments"))
     return resp
 
 

@@ -7,17 +7,29 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Moeda',
+            name="Moeda",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('country_coin', models.CharField(max_length=20, verbose_name='Nome')),
-                ('data', models.DateField()),
-                ('value', models.DecimalField(decimal_places=2, max_digits=4, verbose_name='Valor')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("country_coin", models.CharField(max_length=20, verbose_name="Nome")),
+                ("data", models.DateField()),
+                (
+                    "value",
+                    models.DecimalField(
+                        decimal_places=2, max_digits=4, verbose_name="Valor"
+                    ),
+                ),
             ],
         ),
     ]

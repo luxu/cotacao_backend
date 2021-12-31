@@ -5,7 +5,7 @@ from pagseguro.django_assertions import assert_contains
 
 @pytest.fixture
 def resp(client):
-    resp = client.get('/')
+    resp = client.get("/")
     return resp
 
 
@@ -14,4 +14,4 @@ def test_status_code(resp):
 
 
 def test_title(resp):
-    assert_contains(resp, '<title>Administradora PAGSEGURO</title>')
+    assert_contains(resp, "<title>Administradora PAGSEGURO</title>")

@@ -10,17 +10,16 @@ from model_mommy import mommy
 def providers(users):
     fake = Faker()
     for user in users:
-        provider = Providers(user=user, corporate_name=fake.first_name(), cnpj="233443230000130")
+        provider = Providers(
+            user=user, corporate_name=fake.first_name(), cnpj="233443230000130"
+        )
         provider.save()
     return Providers.objects.all()
 
 
 @pytest.fixture
 def provider_corporate_name(db):
-    provider = mommy.make(
-        Providers,
-        corporate_name="Holowiwi"
-    )
+    provider = mommy.make(Providers, corporate_name="Holowiwi")
     return provider
 
 
@@ -34,4 +33,4 @@ def test_corporate_name(providers):
 
 
 def test_provider_with_corporate_name(provider_corporate_name):
-    assert provider_corporate_name.corporate_name == 'Holowiwi'
+    assert provider_corporate_name.corporate_name == "Holowiwi"

@@ -5,11 +5,7 @@ from model_mommy import mommy
 
 @pytest.fixture
 def user(db):
-    return mommy.make(
-        User,
-        username="marinaul",
-        password="2"
-    )
+    return mommy.make(User, username="marinaul", password="2")
 
 
 @pytest.fixture
@@ -19,7 +15,7 @@ def users(db):
 
 @pytest.fixture
 def resp(client, db):
-    return client.get('/')
+    return client.get("/")
 
 
 def test_should_username(user) -> None:
