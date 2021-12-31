@@ -2,6 +2,7 @@ import pytest
 from django.contrib.auth.models import User
 from model_bakery import baker
 
+
 @pytest.fixture
 def user(db):
     return baker.make(User, username="marinaul", password="2")
