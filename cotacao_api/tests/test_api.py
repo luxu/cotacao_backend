@@ -1,32 +1,23 @@
 import pytest
-from requests import get
 
 from django.urls import reverse
 
-from cotacao_api.settings import BASE_URL
-
 
 @pytest.fixture
-def url_api_request_advance():
-    url_view = reverse("api_request_advance", kwargs={"payment_id": "6"})
-    url = "".join((BASE_URL, url_view))
-    return url
+def url_que_carrega_os_dados(client, db):
+    """Criado o banco, roda as migrations, acessa a url externa e alimenta o banco com os dados"""
+    return client.get(reverse("api_site"))
 
 
-@pytest.fixture
-def url_api_payment_id():
-    url_view = reverse("api_request_advance", kwargs={"payment_id": "4"})
-    url = "".join((BASE_URL, url_view))
-    return url
+def test_carregar_dados_api_externa(url_que_carrega_os_dados):
+    assert url_que_carrega_os_dados.status_code == 200
 
 
-def test_solicitar_antecipacao_de_recebivel(url_api_request_advance):
-    headers = {"Authorization": "Basic bWFyaW5hdWw6Mg=="}
-    resp = get(url_api_request_advance, headers=headers)
-    assert resp.status_code == 200
+def test_base_de_dados_vazi(client, db):
+    resp = client.get(reverse('api_cotacoes'))
+    assert len(resp.json()) == 0
 
 
-def test_listar_por_estado_de_pagamento(url_api_payment_id):
-    headers = {"Authorization": "Basic bWFyaW5hdWw6Mg=="}
-    res = get(url_api_payment_id, headers=headers)
-    assert res.status_code == 200
+def test_listar_todos_dados(client, url_que_carrega_os_dados):
+    resp = client.get(reverse('api_cotacoes'))
+    assert len(resp.json()) > 0
