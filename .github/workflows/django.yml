@@ -32,11 +32,24 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Copying configurations
+      run: |
+        cp contrib/env-sample .env
     - name: Install Dependencies
       run: |
-        pip install pipenv
         python -m pip install --upgrade pip
+        pip install pipenv
+        pipenv sync --dev
         pip install -r requirements-dev.txt
     - name: Lint with flake8
       run: |
         pipenv run flake8 .
+    - name: Rodar Testes Automáticos
+      run: |
+          pipenv run pytest --cov=cotacao_api/tests
+    - name: Relatório Coverage
+      env:
+          CODECOV_TOKEN: "a25e3e4c-71da-4e0c-9dd2-db308c481bb4"
+      run: |
+          pipenv run codecov        
+        
