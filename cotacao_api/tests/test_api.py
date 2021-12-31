@@ -3,7 +3,7 @@ from requests import get
 
 from django.urls import reverse
 
-from pagseguro.settings import BASE_URL
+from cotacao_api.settings import BASE_URL
 
 
 @pytest.fixture
