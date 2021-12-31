@@ -44,15 +44,4 @@ jobs:
     - name: Lint with flake8
       run: |
         pipenv run flake8 .
-    - name: Rodar Testes Automáticos
-      env: 
-        SECRET_KEY: 'your-genereated-secret_key'
-        ENVIROMENT: 'production'
-      run: |
-          pytest cotacao_api --cov=cotacao_api
-    - name: Relatório Coverage
-      env:
-          CODECOV_TOKEN: "a25e3e4c-71da-4e0c-9dd2-db308c481bb4"
-      run: |
-          codecov        
         
