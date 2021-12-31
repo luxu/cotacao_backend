@@ -47,6 +47,7 @@ jobs:
     - name: Rodar Testes Automáticos
       env: 
         SECRET_KEY: 'your-genereated-secret_key'
+        ENVIROMENT: 'production'
       run: |
           pytest --cov=cotacao_api/tests
     - name: Relatório Coverage
