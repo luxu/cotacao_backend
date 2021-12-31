@@ -49,10 +49,10 @@ jobs:
         SECRET_KEY: 'your-genereated-secret_key'
         ENVIROMENT: 'production'
       run: |
-          pytest --cov=cotacao_api/tests
+          pytest cotacao_api --cov=cotacao_api
     - name: Relatório Coverage
       env:
           CODECOV_TOKEN: "a25e3e4c-71da-4e0c-9dd2-db308c481bb4"
       run: |
-          pipenv run codecov        
+          codecov        
         
