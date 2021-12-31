@@ -1,2 +1,2 @@
 release: python manage.py migrate --noinput
-web: gunicorn cotacao_backend.wsgi --log-file -
+web: gunicorn cotacao_api.wsgi --log-file -

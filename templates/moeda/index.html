@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Cotação</h1>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Moeda</th>
+            <th>Sigla</th>
+            <th>Data</th>
+            <th>Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in itens %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.name_coin }}</td>
+            <td>{{ item.initials }}</td>
+            <td>{{ item.data }}</td>
+            <td>{{ item.value }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
