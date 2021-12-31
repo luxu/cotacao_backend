@@ -1,10 +1,9 @@
 import os
-from datetime import timedelta
-from pathlib import Path
 from functools import partial
-from decouple import Csv, config
+from pathlib import Path
 
 import dj_database_url
+from decouple import Csv, config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -13,7 +12,6 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -46,8 +44,7 @@ ROOT_URLCONF = 'cotacao_api.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -89,7 +86,6 @@ elif 'production' in DATABASE_TO_TEST:
         'default': config('DATABASE_URL', default=default_db_url, cast=parse_database)
     }
 
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -115,7 +111,6 @@ REST_FRAMEWORK = {
         # 'rest_framework.permissions.IsAuthenticated',
     )
 }
-
 
 LANGUAGE_CODE = 'pt-br'
 TIME_ZONE = 'America/Sao_Paulo'
